@@ -12,4 +12,5 @@ export class ProjectService {
     this.projects = PROJECTS
     return this.projects;
   }
+  updateProject(){}
 }

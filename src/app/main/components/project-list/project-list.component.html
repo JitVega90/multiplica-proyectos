@@ -1,14 +1,15 @@
-<table>
-    <tr>
-      <th>Nombre del proyecto</th>
-      <th>Descripción</th>
-      <th>Estado</th>
-      <th>Editar proyecto</th>
-    </tr>
-    <tr class="" *ngFor="let proyecto of projects">
-      <th>nombre: {{ proyecto.name }}</th>
-      <th>descripción: {{ proyecto.description }}</th>
-      <th>estado: {{ proyecto.state }}</th>
-    </tr>
-  </table>
+<table class="rounded-lg border-solid border-2 border-blue-300">
+  <tr class="text-center">
+    <th class="p-4">Nombre del proyecto</th>
+    <th class="p-4">Descripción</th>
+    <th class="p-4">Estado</th>
+    <th class="p-4">Editar proyecto</th>
+  </tr>
+  <tr class="text-left" *ngFor="let proyecto of projects">
+    <th class="pl-4 p-2 text-gray-500">{{ proyecto.name }}</th>
+    <th class="p-2 text-gray-500">{{ proyecto.description }}</th>
+    <th class="pl-4 p-2 text-gray-500">{{ proyecto.status }}</th>
+    <th class="pl-4 p-2 text-gray-500"><button>editar</button></th>
+  </tr>
+</table>
   
