@@ -12,5 +12,9 @@ export class ProjectService {
     this.projects = PROJECTS
     return this.projects;
   }
+  addProject(project: Project): void {
+    const newProject = {...project};
+    PROJECTS.push(newProject);
+  }
   updateProject(){}
 }

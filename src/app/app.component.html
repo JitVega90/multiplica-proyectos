@@ -1,3 +1,9 @@
-<div>
-  <router-outlet />
+<app-header></app-header>
+<div class="w-max h-max flex">
+  <section>
+    <app-vertical-menu class="h-auto w-auto"></app-vertical-menu>
+  </section>
+  <section>
+    <router-outlet class="h-fit w-fit" />
+  </section>
 </div>

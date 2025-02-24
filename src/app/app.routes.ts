@@ -4,6 +4,11 @@ import { ProjectFormComponent } from './main/components/project-form/project-for
 
 export const routes: Routes = [
     {
+        path: '',
+        redirectTo:'home',
+        pathMatch: 'full'
+    },
+    {
         path: 'home',
         component: HomeComponent
     },
@@ -12,8 +17,8 @@ export const routes: Routes = [
         component: ProjectFormComponent
     },
     {
-        path: '',
-        redirectTo:'/home',
+        path: '**',
+        redirectTo: 'home',
         pathMatch: 'full'
-    },
+    }
 ];

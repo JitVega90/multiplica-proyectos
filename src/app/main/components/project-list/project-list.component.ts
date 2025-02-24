@@ -12,7 +12,7 @@ import { Project } from '../../../services/types/project';
 })
 export class ProjectListComponent {
   projects: Project[] = [];
-  constructor(private service: ProjectService){}
+  constructor(public service: ProjectService){}
   ngOnInit(): void{
     this.getProjects();
   }
