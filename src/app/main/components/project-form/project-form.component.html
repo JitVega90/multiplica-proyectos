@@ -1,19 +1,24 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="projectForm" class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-  <h2 class="text-xl font-semibold mb-4">{{ project ? 'Editar proyecto' : 'Nuevo Proyecto'}}</h2>
+  <h2 class="text-xl font-semibold mb-4">{{ ifProject ? 'Editar proyecto' : 'Nuevo Proyecto'}}</h2>
 
-  <label for="block mb-2 text-sm font-medium text-gray-700">Nombre del proyecto</label>
-  <input formControlName="name" type="text" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" />
+  <label for="block mb-2 text-sm font-medium text-gray-700">(*) Nombre del proyecto</label>
+  <input formControlName="name" type="text" class="w-full p-2 border rounded-lg focus:ring focus:ring-green-light" />
 
-  <div *ngIf="projectForm.get('name')?.invalid && projectForm.get('name')?.touched" class="text-red-500 text-sm">Este campo es obligatorio</div>
+  <div *ngIf="projectForm.get('name')?.invalid && projectForm.get('name')?.touched" class="text-red text-sm">
+    Este campo es obligatorio
+  </div>
 
   <label class="block mt-4 mb-2 text-sm font-medium text-gray-700">Descripción</label>
-  <textarea formControlName="description" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"></textarea>
+  <textarea formControlName="description" class="w-full p-2 border rounded-lg focus:ring focus:ring-green-light"></textarea>
 
-  <label class="block mt-4 mb-2 text-sm font-medium text-gray-700">Estado</label>
-  <select formControlName="status" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300">
+  <label class="block mt-4 mb-2 text-sm font-medium text-gray-700">(*) Estado</label>
+  <select formControlName="status" class="w-full p-2 border rounded-lg focus:ring focus:ring-green-light">
     <option value="Activo">Activo</option>
     <option value="Inactivo">Inactivo</option>
   </select>
+  <div *ngIf="projectForm.get('status')?.invalid && projectForm.get('status')?.touched" class="text-red text-sm">
+    Debes seleccionar un estado
+  </div>
 
-  <button type="submit" class="mt-6 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 disabled:opacity-50" [disabled]="projectForm.invalid">Guardar</button>
+  <button type="submit" class="mt-6 w-full bg-green-dark text-white p-2 rounded-lg hover:bg-green-light disabled:opacity-50" [disabled]="projectForm.invalid">Guardar</button>
 </form>

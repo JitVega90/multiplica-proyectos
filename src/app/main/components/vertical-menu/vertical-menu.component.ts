@@ -8,5 +8,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './vertical-menu.component.css'
 })
 export class VerticalMenuComponent {
+  optionMenu1: string = 'Lista';
+  optionMenu2: string = 'Formulario';
 
 }

@@ -5,7 +5,7 @@
     <th class="p-4">Estado</th>
     <th class="p-4">Editar proyecto</th>
   </tr>
-  <tr class="text-left" *ngFor="let proyecto of service.getProjects()">
+  <tr class="text-left" *ngFor="let proyecto of store.projects()">
     <th class="pl-4 p-2 text-gray-500">{{ proyecto.name }}</th>
     <th class="p-2 text-gray-500">{{ proyecto.description }}</th>
     <th class="pl-4 p-2 text-gray-500">{{ proyecto.status }}</th>
