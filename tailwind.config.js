@@ -9,7 +9,8 @@ module.exports = {
       'green-light':'#1BDEA6',
       'green-dark':'#0B4D58',
       'red': '#FF0000',
-      'white': '#FFFFFF'
+      'white': '#FFFFFF',
+      'gray': '#566573'
     }
   },
   plugins: [],

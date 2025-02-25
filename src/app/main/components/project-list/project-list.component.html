@@ -1,15 +1,35 @@
-<table class="w-full h-full rounded-lg border-solid border-2 border-blue-300">
-  <tr class="text-center">
-    <th class="p-4">Nombre del proyecto</th>
-    <th class="p-4">Descripción</th>
-    <th class="p-4">Estado</th>
-    <th class="p-4">Editar proyecto</th>
-  </tr>
-  <tr class="text-left" *ngFor="let proyecto of store.projects()">
-    <th class="pl-4 p-2 text-gray-500">{{ proyecto.name }}</th>
-    <th class="p-2 text-gray-500">{{ proyecto.description }}</th>
-    <th class="pl-4 p-2 text-gray-500">{{ proyecto.status }}</th>
-    <th class="pl-4 p-2 text-gray-500"><button>editar</button></th>
-  </tr>
-</table>
-  
+
+<div class="p-8">
+  <label class=" pr-4">Buscar proyecto</label>
+  <input class="border rounded-lg" type="text" name="searchValue" id="search-value">
+</div>
+<div class="w-full h-full border border-green-dark rounded-lg shadow-lg">
+  <div class="grid grid-cols-4 bg-blue-100 text-gray-700 font-semibold p-4 border-b border-blue-300">
+    <div class="text-center text-green-dark">Nombre del proyecto</div>
+    <div class="text-center text-green-dark">Descripción</div>
+    <div class="text-center text-green-dark">Estado</div>
+    <div class="text-center text-green-dark">Acciones</div>
+  </div>
+
+  <div *ngFor="let proyecto of store.projectsList()" 
+    class="grid grid-cols-4 items-center p-4 border-b border-gray-200 bg-white hover:bg-gray">
+    
+    <div class="text-gray-700">{{ proyecto.name }}</div>
+    <div class="text-gray-600">{{ proyecto.description }}</div>
+    
+    <div class="font-semibold text-center" [ngClass]="{
+      'text-green-light': proyecto.status === 'Activo',
+      'text-gray': proyecto.status === 'Inactivo'
+    }">
+      {{ proyecto.status }}
+    </div>
+
+    <div class="text-center">
+      <button 
+      class="px-4 py-2 text-white bg-green-dark rounded-md shadow hover:bg-blue-600 transition"
+      (click)="editProject(proyecto)">
+        Editar
+    </button>
+    </div>
+  </div>
+</div>

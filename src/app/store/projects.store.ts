@@ -25,10 +25,10 @@ const initialState: ProjectState = {
 export const ProjectStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
+    withState({ projectToEdit: null as Project | null }),
     withComputed(({projects}) => ({
-        projectsList: computed(() => projects),
-        projectsCount: computed(() => projects().length),
-        //spellProjects: computed(() => projects().filter)
+        projectsList: computed(() => projects()),
+        projectsCount: computed(() => projects().length),        
     })),
     withMethods((store, projectService = inject(ProjectService)) => ({
         loadPages: rxMethod(
@@ -38,10 +38,17 @@ export const ProjectStore = signalStore(
                     return projectService.getProjects()
                 }),
                 tap((projects: Project[]) => {
-                    console.log('Proyectos recibidos:', projects);
+                    //console.log('Proyectos recibidos:', projects);
                     patchState(store, { projects, state: 'Loaded' });
                 })
             )
         ),
+        addProject: (newProject: Project) => {
+            //console.log('Proyecto añadido:', newProject);
+            patchState(store, { projects: [...store.projects(), newProject] });
+        },
+        setProjectToEdit: (project: Project) => {
+            patchState(store, { projectToEdit: project });
+        }
     }))
 )
