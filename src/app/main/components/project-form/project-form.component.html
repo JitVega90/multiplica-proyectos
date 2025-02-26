@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="projectForm" class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+<form (ngSubmit)="onSubmit()" [formGroup]="projectForm" class="w-auto h-auto bg-gray-light p-6 rounded-lg shadow-md max-w-md mx-auto">
   <h2 class="text-xl font-semibold mb-4">{{ ifProject ? 'Editar proyecto' : 'Nuevo Proyecto'}}</h2>
 
   <label for="block mb-2 text-sm font-medium text-gray-700">(*) Nombre del proyecto</label>
@@ -21,4 +21,7 @@
   </div>
 
   <button type="submit" class="mt-6 w-full bg-green-dark text-white p-2 rounded-lg hover:bg-green-light disabled:opacity-50" [disabled]="projectForm.invalid">Guardar</button>
+  <div *ngIf="isSave" class="p-2 pt-4 text-green-light text-center">
+    El proyecto se guardó correctamente
+  </div>
 </form>

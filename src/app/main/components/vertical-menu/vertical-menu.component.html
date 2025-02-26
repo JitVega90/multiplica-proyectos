@@ -1,10 +1,6 @@
-<div class="h-full text-green-dark">
-        <ul class="h-full flex flex-col justify-center bg-green-dark text-white shadow-lg py-2">
-            <li>
-                <a routerLink="/home" class="px-4 py-2 hover:text-blue-800">{{optionMenu1}}</a>
-            </li>
-            <li>
-                <a routerLink="/formulario" class="px-4 py-2 hover:text-blue-800">{{optionMenu2}}</a>
-            </li>
-        </ul>
+<div class="h-full w-fit text-green-dark">
+  <div class="h-full grid grid-cols-1 grid-rows-12 bg-green-dark text-white shadow-lg py-2">
+    <a routerLink="/home" class="px-8 row-start-4 py-4 hover:bg-gray-light hover:text-green-dark transition">{{optionMenu1}}</a>
+    <a routerLink="/formulario" class="w-auto px-8 row-start-5 py-4 hover:bg-gray-light hover:text-green-dark transition">{{optionMenu2}}</a>
+  </div>
 </div>

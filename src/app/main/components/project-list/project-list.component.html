@@ -1,10 +1,12 @@
 
 <div class="p-8">
   <label class=" pr-4">Buscar proyecto</label>
-  <input class="border rounded-lg" type="text" name="searchValue" id="search-value">
+  <input class="border rounded-lg" type="text" name="searchValue" id="search-value"
+  [(ngModel)]="searchValue" (input)="findProjec()"
+  >
 </div>
-<div class="w-full h-full border border-green-dark rounded-lg shadow-lg">
-  <div class="grid grid-cols-4 bg-blue-100 text-gray-700 font-semibold p-4 border-b border-blue-300">
+<div class="w-full h-full border border-green-dark bg-gray-light rounded-lg shadow-lg">
+  <div class="grid grid-cols-4 font-semibold p-4 border-b">
     <div class="text-center text-green-dark">Nombre del proyecto</div>
     <div class="text-center text-green-dark">Descripción</div>
     <div class="text-center text-green-dark">Estado</div>
@@ -12,12 +14,12 @@
   </div>
 
   <div *ngFor="let proyecto of store.projectsList()" 
-    class="grid grid-cols-4 items-center p-4 border-b border-gray-200 bg-white hover:bg-gray">
+    class="grid grid-cols-4 items-center p-4 border-b border-green-dark bg-white hover:bg-gray-light">
     
-    <div class="text-gray-700">{{ proyecto.name }}</div>
-    <div class="text-gray-600">{{ proyecto.description }}</div>
+    <div class="pl-4 text-gray-700">{{ proyecto.name }}</div>
+    <div class="pl-4 text-gray-600">{{ proyecto.description }}</div>
     
-    <div class="font-semibold text-center" [ngClass]="{
+    <div class=" font-semibold text-center" [ngClass]="{
       'text-green-light': proyecto.status === 'Activo',
       'text-gray': proyecto.status === 'Inactivo'
     }">
@@ -25,11 +27,15 @@
     </div>
 
     <div class="text-center">
-      <button 
-      class="px-4 py-2 text-white bg-green-dark rounded-md shadow hover:bg-blue-600 transition"
+      <img src="/edit-pen-pencil.svg" 
+      alt="Editar"
+      class="w-8 h-8 cursor-pointer inline-block hover:scale-110 transition-transform"
+      (click)="editProject(proyecto)">
+      <!--<button 
+      class="px-4 py-2 text-white bg-green-dark rounded-md shadow hover:bg-green-light transition"
       (click)="editProject(proyecto)">
         Editar
-    </button>
+    </button>-->
     </div>
   </div>
 </div>

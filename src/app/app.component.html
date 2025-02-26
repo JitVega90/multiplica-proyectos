@@ -1,9 +1,11 @@
-<app-header></app-header>
-<div class="w-full h-[calc(100vh-8rem)] flex">
-  <section class="w-auto">
-    <app-vertical-menu class="h-auto w-auto"></app-vertical-menu>
-  </section>
-  <section class="w-[90%] h-full">
-    <router-outlet class="h-fit w-fit" />
-  </section>
+<div class="flex">
+  <app-vertical-menu class=""></app-vertical-menu>
+  <div class="w-full h-[calc(100vh)]">
+    <section class="">
+      <app-header></app-header>
+    </section>
+    <section class=" mt-8">
+      <router-outlet />
+    </section>
+  </div>
 </div>

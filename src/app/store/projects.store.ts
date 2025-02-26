@@ -13,22 +13,22 @@ export interface Project {
 interface ProjectState {
     projects: Project[];
     state: 'Loading' | 'Loaded' | 'error',
-    filter: { query: string; page: number }
+    filter: { query: string; name: string }
 }
 
 const initialState: ProjectState = {
     projects: [],
     state: 'Loading',
-    filter: {query: '', page: 1}
+    filter: {query: '', name: ''}
 }
 
 export const ProjectStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
     withState({ projectToEdit: null as Project | null }),
-    withComputed(({projects}) => ({
-        projectsList: computed(() => projects()),
-        projectsCount: computed(() => projects().length),        
+    withComputed(({projects,filter}) => ({
+        projectsList: computed(() => projects().filter(p => p.name.toLocaleLowerCase().includes(filter().query.toLocaleLowerCase()))),
+        projectsCount: computed(() => projects().length)
     })),
     withMethods((store, projectService = inject(ProjectService)) => ({
         loadPages: rxMethod(
@@ -49,6 +49,10 @@ export const ProjectStore = signalStore(
         },
         setProjectToEdit: (project: Project) => {
             patchState(store, { projectToEdit: project });
+        },
+        setFilterQuery: (query: string) => {
+            patchState(store, { filter: { ...store.filter(), query } });
+            //console.log('query: ',query, 'array: ', store.projectsList());
         }
     }))
 )

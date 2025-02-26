@@ -16,6 +16,7 @@ import { ProjectStore } from '../../../store/projects.store';
 export class ProjectFormComponent implements OnInit{
   project: Project | null = null;
   ifProject: boolean = false;
+  isSave: boolean = false;
   projectForm! : FormGroup;
   readonly store = inject(ProjectStore);
 
@@ -34,18 +35,25 @@ export class ProjectFormComponent implements OnInit{
     }
   }
   onSubmit(){
-    /*if(this.projectForm.valid){
-      this.store.addProject(this.projectForm.value)
-    }*/
     if(this.projectForm.valid){
       const exists = this.service.ifExists(this.projectForm.value);
       if(exists){
         this.ifProject = false;
+        this.isSave = true,
+        console.log('se guardó', this.isSave)
+        this.cleanForm();
       }else {
-        this.ifProject = true;
         this.service.updateProject(this.projectForm.value);
+        this.ifProject = true;
+        this.cleanForm();
       }
-
     }
+  }
+  cleanForm(){
+    this.fb.group({
+      name: '',
+      description: '',
+      status: ''
+    })
   }
 }
