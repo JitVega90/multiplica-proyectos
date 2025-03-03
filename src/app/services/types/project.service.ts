@@ -1,34 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { PROJECTS } from '../mock-projects';
-import { of, Observable } from 'rxjs';
+import { of, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
   private projects: Project[] = PROJECTS;
+  private projectSubject = new BehaviorSubject<Project[]>(PROJECTS);
+  projects$ = this.projectSubject.asObservable();
 
   getProjects(): Observable<Project[]> {
-    return of(PROJECTS);
+    return this.projects$;
   }
   addProject(project: Project): void {
     const newProject = {...project};
-    PROJECTS.push(newProject);
+    const updateProject = [...this.projectSubject.value, newProject];
+    this.projectSubject.next(updateProject);
+    console.log("Array: ", )
   }
   ifExists(project: Project): boolean {
-    const index = this.projects.findIndex(p => p.name.toLowerCase() === project.name.toLowerCase());
-    if(index !==-1){
+    const exists = this.projects.findIndex(p => p.name.toLowerCase() === project.name.toLowerCase());
+    if(exists !==-1){
       return false;
     }else {
       this.addProject(project);
       return true;
     }
   }
-  updateProject(project: Project){
-    const findIndex = this.projects.findIndex(p => p.name.toLowerCase() === project.name.toLowerCase());
-    if (findIndex !== -1) {
-      this.projects[findIndex] = { ...this.projects[findIndex], ...project };
-    }
+  updateProject(newProject: Project){
+    const updatedProjects = this.projectSubject.value.map(project => project.name.toLocaleLowerCase() === newProject.name.toLocaleLowerCase() ? {...project, ...newProject} : project );
+    this.projectSubject.next(updatedProjects);
   }
 }

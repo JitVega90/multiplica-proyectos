@@ -21,11 +21,12 @@ export class ProjectListComponent {
 
   ngOnInit(): void{
     this.store.loadPages(1);
-
   }
   editProject(proyecto: Project) {
     console.log('Editando proyecto:', proyecto);
     this.store.setProjectToEdit(proyecto);
+    this.service.addProject(proyecto);
+    //this.store.loadPages(1);
     this.router.navigate(['/formulario']);
   }
   findProjec() {

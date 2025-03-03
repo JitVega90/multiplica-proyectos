@@ -34,9 +34,7 @@ export const ProjectStore = signalStore(
         loadPages: rxMethod(
             pipe(
                 tap(() => patchState(store, {state: 'Loading'})),
-                switchMap(() => {
-                    return projectService.getProjects()
-                }),
+                switchMap(() => projectService.projects$),
                 tap((projects: Project[]) => {
                     //console.log('Proyectos recibidos:', projects);
                     patchState(store, { projects, state: 'Loaded' });
@@ -44,7 +42,7 @@ export const ProjectStore = signalStore(
             )
         ),
         addProject: (newProject: Project) => {
-            //console.log('Proyecto añadido:', newProject);
+            console.log('Proyecto añadido:', newProject);
             patchState(store, { projects: [...store.projects(), newProject] });
         },
         setProjectToEdit: (project: Project) => {
